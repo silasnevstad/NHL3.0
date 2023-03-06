@@ -4,7 +4,7 @@ A python machine learning model to predict the outcomes of NHL games.
 
 <!-- TABLE OF CONTENTS -->
 <div id="top"></div>
-<details>
+<details open>
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#overview">Overview</a></li>
