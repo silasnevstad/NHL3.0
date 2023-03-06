@@ -52,6 +52,5 @@ A machine learning model designed to predict the outcome of NHL matches. The mod
  ## Acknowledgements
  
  Data sourced from naturalstattrick.com
- - re
 
 <p align="right">(<a href="#top">backop</a>)</p>
