@@ -10,6 +10,7 @@ A python machine learning model to predict the outcomes of NHL games.
     <li><a href="#overview">Overview</a></li>
     <li><a href="#builtwith">Built With</a></li>
     <li><a href="#dependencies">Dependencies</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -31,7 +32,7 @@ A machine learning model designed to predict the outcome of NHL matches. The mod
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Dependencies -->
- <div id="dependencies"></div>
+<div id="dependencies"></div>
 
  ## Dependencies
  - numpy
@@ -41,6 +42,16 @@ A machine learning model designed to predict the outcome of NHL matches. The mod
  - sklearn.linear_model.Ridge
  - sklearn.metrics.mean_squared_error
  - sklearn.metrics
+ - re
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Acknowledgements -->
+<div id="acknowledgements"></div>
+
+ ## Acknowledgements
+ 
+ Data sourced from naturalstattrick.com
  - re
 
 <p align="right">(<a href="#top">back to top</a>)</p>
