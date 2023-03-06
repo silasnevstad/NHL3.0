@@ -55,16 +55,10 @@ def downloadData(fromSeason, thruSeason, today, games_played):
         filterButton = driver.find_element(By.ID, 'colfilterlb')
         filterButton.click()
         buttons = driver.find_elements(By.CSS_SELECTOR, '[class*="\\\\buttonspan"]')
+        button_order = [7, 8, 10, 12, 13, 14, 15, 16, 17]
 
-        buttons[7].click()
-        buttons[8].click()
-        buttons[10].click()
-        buttons[12].click()
-        buttons[13].click()
-        buttons[14].click()
-        buttons[15].click()
-        buttons[16].click()
-        buttons[17].click()
+        for i in button_order:
+            buttons[i].click()
 
         saveButton = driver.find_elements(By.TAG_NAME, "input")[29] # save button
         saveButton.click()
@@ -86,15 +80,8 @@ def downloadData(fromSeason, thruSeason, today, games_played):
         filterButton.click()
         buttons = driver.find_elements(By.CSS_SELECTOR, '[class*="\\\\buttonspan"]')
 
-        buttons[7].click()
-        buttons[8].click()
-        buttons[10].click()
-        buttons[12].click()
-        buttons[13].click()
-        buttons[14].click()
-        buttons[15].click()
-        buttons[16].click()
-        buttons[17].click()
+        for i in button_order:
+            buttons[i].click()
 
         saveButton = driver.find_elements(By.TAG_NAME, "input")[29] # save button
         saveButton.click()
