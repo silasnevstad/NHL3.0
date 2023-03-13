@@ -13,6 +13,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import json
+import unicodedata
 
 from datetime import date
 
@@ -32,6 +33,10 @@ opts.add_experimental_option("excludeSwitches", ["enable-automation"])
 opts.add_experimental_option('useAutomationExtension', False)
 
 
+def remove_accents(input_str):
+    nfkd_form = unicodedata.normalize('NFKD', input_str)
+    only_ascii = nfkd_form.encode('ASCII', 'ignore')
+    return only_ascii
 
 # =============================================== [--- Downloading data ---] ===============================================
 def downloadData(fromSeason, thruSeason, today, games_played):
@@ -369,6 +374,8 @@ from scipy.stats import poisson
 
 # using the strengths of each team, predict the outcome of each game
 def predict_game(home_team, away_team):
+    home_team = remove_accents(home_team).decode("utf-8")
+    away_team = remove_accents(away_team).decode("utf-8")
     home_attack_strength = strengths_df.loc[home_team]['Home Attack Strength']
     home_defense_strength = strengths_df.loc[home_team]['Home Defense Strength']
     
@@ -422,13 +429,13 @@ def decimal_to_american(odds):
         return int(-100 / (odds - 1))
 
 # returns the odds for the away team and the home team (decimal)
-def get_odds(away_team, home_team):
-    away_prob, home_prob = predict_game(away_team, home_team)
+def get_odds(home_team, away_team):
+    home_prob, away_prob = predict_game(home_team, away_team)
     
     away_odds = round(1 / away_prob, 2)
     home_odds = round(1 / home_prob, 2)
     
-    return away_odds, home_odds
+    return home_odds , away_odds
 
 def clean_odds():
     odds_response = requests.get(f'https://api.the-odds-api.com/v3/odds/?sport=icehockey_nhl&region=us&mkt=h2h&dateFormat=iso&apiKey={api_key}')
@@ -455,7 +462,7 @@ def calculate_picks(odds):
         given_home_odds = game[2]
         given_away_odds = game[3]
         
-        my_home_odds, my_away_odds = get_odds(game[1], game[0])
+        my_home_odds, my_away_odds = get_odds(game[0], game[1])
         
         # if the odds are better than the given odds, then bet on the team
         if my_away_odds < given_away_odds and (given_away_odds - my_away_odds) > 0.2:
